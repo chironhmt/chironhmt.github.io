@@ -160,5 +160,43 @@
             </section>
         </main>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dobInput = document.getElementById('dob');
+            const diagnosisDateInput = document.getElementById('diagnosis-date');
+            const ageInput = document.getElementById('age');
+
+            // 1. Set default dates to today
+            const today = new Date().toISOString().split('T')[0];
+            if (dobInput && !dobInput.value) dobInput.value = today;
+            if (diagnosisDateInput && !diagnosisDateInput.value) diagnosisDateInput.value = today;
+
+            // 2. Calculate age based on DOB and Diagnosis Date
+            function calculateAge() {
+                if (dobInput && diagnosisDateInput && ageInput) {
+                    if (dobInput.value && diagnosisDateInput.value) {
+                        const dob = new Date(dobInput.value);
+                        const diagDate = new Date(diagnosisDateInput.value);
+                        
+                        let age = diagDate.getFullYear() - dob.getFullYear();
+                        const m = diagDate.getMonth() - dob.getMonth();
+                        
+                        if (m < 0 || (m === 0 && diagDate.getDate() < dob.getDate())) {
+                            age--;
+                        }
+                        
+                        ageInput.value = age >= 0 ? age : 0;
+                    }
+                }
+            }
+
+            // Update age whenever either date changes
+            if (dobInput) dobInput.addEventListener('change', calculateAge);
+            if (diagnosisDateInput) diagnosisDateInput.addEventListener('change', calculateAge);
+
+            // Calculate initially
+            calculateAge();
+        });
+    </script>
 </body>
 </html>
