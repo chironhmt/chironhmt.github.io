@@ -1,0 +1,126 @@
+[
+    {
+        "Regimen": "D-VTD (Bortezomib weekly)",
+        "Cycles": [
+            {
+                "Cycle": "1-2",
+                "Length": 28,
+                "Agents": [
+                    {
+                        "Agent": "Daratumumab",
+                        "Dose": "16 mg/kg",
+                        "Dosing_day": "QW4"
+                    },
+                    {
+                        "Agent": "Bortezomib",
+                        "Dose": "1.3 mg/m2",
+                        "Dosing_day": "QW4"
+                    },
+                    {
+                        "Agent": "Thalidomide",
+                        "Dose": "100 mg",
+                        "Dosing_day": "C28"
+                    },
+                    {
+                        "Agent": "Dexamethasone",
+                        "Dose": "40 mg",
+                        "Dosing_day": "C2QW4"
+                    }
+                ]
+            },
+            {
+                "Cycle": "3-4",
+                "Length": 28,
+                "Agents": [
+                    {
+                        "Agent": "Daratumumab",
+                        "Dose": "16 mg/kg",
+                        "Dosing_day": "QW2"
+                    },
+                    {
+                        "Agent": "Bortezomib",
+                        "Dose": "1.3 mg/m2",
+                        "Dosing_day": "QW4"
+                    },
+                    {
+                        "Agent": "Thalidomide",
+                        "Dose": "100 mg",
+                        "Dosing_day": "C28"
+                    },
+                    {
+                        "Agent": "Dexamethasone",
+                        "Dose": "40 mg",
+                        "Dosing_day": "C2"
+                    },
+                    {
+                        "Agent": "Dexamethasone",
+                        "Dose": "20 mg",
+                        "Dosing_day": "C2QWF8"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Regimen": "D-VTD",
+        "Cycles": [
+            {
+                "Cycle": "1-2",
+                "Length": 28,
+                "Agents": [
+                    {
+                        "Agent": "Daratumumab",
+                        "Dose": "16 mg/kg",
+                        "Dosing_day": "QW4"
+                    },
+                    {
+                        "Agent": "Bortezomib",
+                        "Dose": "1.3 mg/m2",
+                        "Dosing_day": "BiQW2"
+                    },
+                    {
+                        "Agent": "Thalidomide",
+                        "Dose": "100 mg",
+                        "Dosing_day": "C28"
+                    },
+                    {
+                        "Agent": "Dexamethasone",
+                        "Dose": "40 mg",
+                        "Dosing_day": "C2QW4"
+                    }
+                ]
+            },
+            {
+                "Cycle": "3-4",
+                "Length": 28,
+                "Agents": [
+                    {
+                        "Agent": "Daratumumab",
+                        "Dose": "16 mg/kg",
+                        "Dosing_day": "QW2"
+                    },
+                    {
+                        "Agent": "Bortezomib",
+                        "Dose": "1.3 mg/m2",
+                        "Dosing_day": "BiQW2"
+                    },
+                    {
+                        "Agent": "Thalidomide",
+                        "Dose": "100 mg",
+                        "Dosing_day": "C28"
+                    },
+                    {
+                        "Agent": "Dexamethasone",
+                        "Dose": "40 mg",
+                        "Dosing_day": "C2"
+                    },
+                    {
+                        "Agent": "Dexamethasone",
+                        "Dose": "20 mg",
+                        "Dosing_day": "C2QWF8"
+                    }
+                ]
+            }
+        ]
+    }
+]
