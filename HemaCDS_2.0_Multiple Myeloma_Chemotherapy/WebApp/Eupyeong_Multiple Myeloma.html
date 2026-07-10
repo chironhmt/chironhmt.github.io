@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HemaCDS 2.0 Eupyeong_Multiple Myeloma</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=3">
+    <style>
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <h1>HemaCDS 2.0 <span>Eupyeong_Multiple Myeloma</span></h1>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <section class="content-area" id="content-area">
+                <div class="cycle-planner" id="planner-container" style="margin: 0; max-width: 900px;">
+                    
+                    <div class="planner-header">
+                        <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+                            <h2>Patient Registry Data</h2>
+                        </div>
+                    </div>
+
+                    <div class="planner-sections">
+                        <!-- Section 1 -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>1. Demographics and Disease-related Characteristics</h3>
+                                <p class="subtitle">Patient baseline information</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="patient-id">Patient ID</label>
+                                        <input type="text" id="patient-id" class="custom-text-input" placeholder="e.g. 12345678">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="age">Age at Diagnosis</label>
+                                        <input type="number" id="age" class="custom-text-input" placeholder="e.g. 65">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sex">Sex</label>
+                                        <select id="sex" class="custom-text-input">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="diagnosis-date">Date of Diagnosis</label>
+                                        <input type="date" id="diagnosis-date" class="custom-text-input">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2 -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>2. Treatment</h3>
+                                <p class="subtitle">Therapy records and responses</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="line-of-therapy">Line of Therapy</label>
+                                        <select id="line-of-therapy" class="custom-text-input">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="1">1st Line</option>
+                                            <option value="2">2nd Line</option>
+                                            <option value="3">3rd Line or more</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="regimen">Regimen</label>
+                                        <input type="text" id="regimen" class="custom-text-input" placeholder="e.g. VRd, Dara-Rd">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="asct">ASCT Status</label>
+                                        <select id="asct" class="custom-text-input">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3 -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>3. Survival Outcomes</h3>
+                                <p class="subtitle">Survival data and current status</p>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="vital-status">Vital Status</label>
+                                        <select id="vital-status" class="custom-text-input">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="Alive">Alive</option>
+                                            <option value="Deceased">Deceased</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="last-followup">Last Follow-up / Death Date</label>
+                                        <input type="date" id="last-followup" class="custom-text-input">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="progression-date">Date of Progression</label>
+                                        <input type="date" id="progression-date" class="custom-text-input">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div style="display: flex; justify-content: flex-end; margin-top: 2rem; margin-bottom: 1rem;">
+                        <button class="btn-primary" style="padding: 0.4rem 2rem; font-size: 0.875rem; font-weight: 600; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Save Record</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
