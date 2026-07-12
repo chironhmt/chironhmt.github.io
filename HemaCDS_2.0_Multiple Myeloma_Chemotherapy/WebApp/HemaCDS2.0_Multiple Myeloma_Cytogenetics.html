@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HemaCDS 2.0 Multiple myeloma</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=3">
+    <style>
+        .radio-group-horizontal {
+            display: grid;
+            grid-template-columns: 170px 170px 100px auto;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .radio-group-horizontal label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .input-percent-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .input-percent-wrapper::after {
+            content: '%';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(calc(-50% + 5px));
+            color: #94a3b8;
+            pointer-events: none;
+            font-size: 1rem;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        .fish-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            width: 100%;
+            max-width: 750px;
+        }
+
+        .fish-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-main);
+            flex: 1;
+        }
+
+        .fish-right-controls {
+            display: grid;
+            grid-template-columns: 100px 160px 105px;
+            transform: translateY(-6px);
+            gap: 2rem;
+            align-items: center;
+            justify-items: end;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <h1>HemaCDS 2.0 <span>Multiple myeloma</span></h1>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <section class="content-area" id="content-area">
+                <div class="cycle-planner" id="planner-container" style="margin: 0; max-width: 900px;">
+                    
+                    <div class="planner-header">
+                        <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+                            <h2>Cytogenetics and FISH</h2>
+                            <div class="cycle-meta-inputs" style="display: flex; gap: 1rem; align-items: center;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <label for="date-of-test" style="font-size: 0.875rem; color: var(--text-secondary);">Date of test</label>
+                                    <input type="date" id="date-of-test" class="custom-text-input" style="margin: 0; padding: 0.4rem; width: auto; font-size: 0.875rem; text-align: center;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="planner-sections">
+                        <!-- Section 1: Sample type -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>1. Sample type</h3>
+                                <p class="subtitle">Select the sample type and enter miotic cells</p>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                                    <div class="radio-group-horizontal">
+                                        <label>
+                                            <input type="radio" name="sample-type" value="Bone marrow" checked onchange="document.getElementById('sample-other-input').style.display='none'">
+                                            Bone marrow
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="sample-type" value="Peripheral blood" onchange="document.getElementById('sample-other-input').style.display='none'">
+                                            Peripheral blood
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="sample-type" value="CSF" onchange="document.getElementById('sample-other-input').style.display='none'">
+                                            CSF
+                                        </label>
+                                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                            <label style="margin: 0;">
+                                                <input type="radio" name="sample-type" value="Other" id="sample-other-radio" onchange="document.getElementById('sample-other-input').style.display='block'; document.getElementById('sample-other-input').focus();">
+                                                Other
+                                            </label>
+                                            <input type="text" id="sample-other-input" class="custom-text-input" placeholder="Specify other" style="display: none; width: 200px; padding: 0.4rem;">
+                                        </div>
+                                    </div>
+
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <label for="total-mitotic-cells" style="font-weight: 500; color: var(--text-main); width: 220px;">Total Mitotic Cells for Analysis</label>
+                                        <input type="number" id="total-mitotic-cells" class="custom-text-input" min="0" placeholder="0" value="20" style="width: 100px; padding: 0.5rem; text-align: right;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Cytogenetics -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>2. Cytogenetics</h3>
+                                <p class="subtitle">Enter chromosome and ploidy results</p>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <label for="chromosome-result" style="width: 100px; font-weight: 500; color: var(--text-main);">Chromosome</label>
+                                        <input type="text" id="chromosome-result" class="custom-text-input" placeholder="Enter chromosome result" style="flex: 1; width: 100%; max-width: 600px; padding: 0.5rem;">
+                                    </div>
+                                    
+                                    <div>
+                                        <div class="radio-group-horizontal">
+                                            <label>
+                                                <input type="checkbox" name="ploidy" value="Hypodiploidy">
+                                                Hypodiploidy
+                                            </label>
+                                            <label>
+                                                <input type="checkbox" name="ploidy" value="Hyperdiploidy" id="hyperdiploidy-checkbox" onchange="const opts = document.getElementById('hyperdiploidy-options'); if(this.checked) { opts.style.display='flex'; } else { opts.style.display='none'; Array.from(opts.querySelectorAll('input[type=\'checkbox\']')).forEach(cb => cb.checked = false); }">
+                                                Hyperdiploidy
+                                            </label>
+                                        </div>
+
+                                        <div id="hyperdiploidy-options" class="checkbox-group" style="display: none; margin-top: 1rem; padding-left: 1rem; border-left: 2px solid var(--border-color);">
+                                            <label><input type="checkbox" value="+3"> +3</label>
+                                            <label><input type="checkbox" value="+5"> +5</label>
+                                            <label><input type="checkbox" value="+7"> +7</label>
+                                            <label><input type="checkbox" value="+9"> +9</label>
+                                            <label><input type="checkbox" value="+11"> +11</label>
+                                            <label><input type="checkbox" value="+15"> +15</label>
+                                            <label><input type="checkbox" value="+19"> +19</label>
+                                            <label><input type="checkbox" value="+21"> +21</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: FISH -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <h3>3. FISH</h3>
+                                    <p class="subtitle">Select FISH abnormalities and enter percentage</p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; flex-direction: column; gap: 0.75rem;" id="fish-container">
+                                    <div class="fish-item">
+                                        <label class="fish-label">
+                                            <input type="checkbox" id="fish-check-0" value="t(4;14)(IGH::FGFR3/MMSET)" checked>
+                                            t(4;14)(IGH::FGFR3/MMSET)
+                                        </label>
+                                        <div class="fish-right-controls">
+                                            <div class="input-percent-wrapper">
+                                                <input type="number" id="fish-percent-0" class="custom-text-input" min="0" max="100" step="0.1" placeholder="0.0" style="width: 100%; padding: 0.4rem; padding-right: 30px; text-align: right;">
+                                            </div>
+                                            <div class="input-nuclei-wrapper">
+                                                <input type="text" id="fish-nuclei-0" class="custom-text-input" placeholder="positive/total nuclei" style="width: 100%; padding: 0.4rem; text-align: center;">
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="fish-item">
+                                        <label class="fish-label">
+                                            <input type="checkbox" id="fish-check-1" value="t(11;14)(IGH::CCND1)" checked>
+                                            t(11;14)(IGH::CCND1)
+                                        </label>
+                                        <div class="fish-right-controls">
+                                            <div class="input-percent-wrapper">
+                                                <input type="number" id="fish-percent-1" class="custom-text-input" min="0" max="100" step="0.1" placeholder="0.0" style="width: 100%; padding: 0.4rem; padding-right: 30px; text-align: right;">
+                                            </div>
+                                            <div class="input-nuclei-wrapper">
+                                                <input type="text" id="fish-nuclei-1" class="custom-text-input" placeholder="positive/total nuclei" style="width: 100%; padding: 0.4rem; text-align: center;">
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="fish-item">
+                                        <label class="fish-label">
+                                            <input type="checkbox" id="fish-check-2" value="t(14;16)(IGH::MAF)" checked>
+                                            t(14;16)(IGH::MAF)
+                                        </label>
+                                        <div class="fish-right-controls">
+                                            <div class="input-percent-wrapper">
+                                                <input type="number" id="fish-percent-2" class="custom-text-input" min="0" max="100" step="0.1" placeholder="0.0" style="width: 100%; padding: 0.4rem; padding-right: 30px; text-align: right;">
+                                            </div>
+                                            <div class="input-nuclei-wrapper">
+                                                <input type="text" id="fish-nuclei-2" class="custom-text-input" placeholder="positive/total nuclei" style="width: 100%; padding: 0.4rem; text-align: center;">
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="fish-item">
+                                        <label class="fish-label">
+                                            <input type="checkbox" id="fish-check-3" value="t(14;20)(IGH::MAFB)" checked>
+                                            t(14;20)(IGH::MAFB)
+                                        </label>
+                                        <div class="fish-right-controls">
+                                            <div class="input-percent-wrapper">
+                                                <input type="number" id="fish-percent-3" class="custom-text-input" min="0" max="100" step="0.1" placeholder="0.0" style="width: 100%; padding: 0.4rem; padding-right: 30px; text-align: right;">
+                                            </div>
+                                            <div class="input-nuclei-wrapper">
+                                                <input type="text" id="fish-nuclei-3" class="custom-text-input" placeholder="positive/total nuclei" style="width: 100%; padding: 0.4rem; text-align: center;">
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="fish-item">
+                                        <label class="fish-label">
+                                            <input type="checkbox" id="fish-check-4" value="del(17p13) (TP53)" checked>
+                                            del(17p13) (TP53)
+                                        </label>
+                                        <div class="fish-right-controls">
+                                            <div class="input-percent-wrapper">
+                                                <input type="number" id="fish-percent-4" class="custom-text-input" min="0" max="100" step="0.1" placeholder="0.0" style="width: 100%; padding: 0.4rem; padding-right: 30px; text-align: right;">
+                                            </div>
+                                            <div class="input-nuclei-wrapper">
+                                                <input type="text" id="fish-nuclei-4" class="custom-text-input" placeholder="positive/total nuclei" style="width: 100%; padding: 0.4rem; text-align: center;">
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="fish-item">
+                                        <label class="fish-label">
+                                            <input type="checkbox" id="fish-check-5" value="gain/amplification 1q21 (CKS1B)" checked>
+                                            gain/amplification 1q21 (CKS1B)
+                                        </label>
+                                        <div class="fish-right-controls">
+                                            <div class="input-percent-wrapper">
+                                                <input type="number" id="fish-percent-5" class="custom-text-input" min="0" max="100" step="0.1" placeholder="0.0" style="width: 100%; padding: 0.4rem; padding-right: 30px; text-align: right;">
+                                            </div>
+                                            <div class="input-nuclei-wrapper">
+                                                <input type="text" id="fish-nuclei-5" class="custom-text-input" placeholder="positive/total nuclei" style="width: 100%; padding: 0.4rem; text-align: center;">
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="fish-item">
+                                        <label class="fish-label">
+                                            <input type="checkbox" id="fish-check-6" value="del(13q14) (RB1/D13S319)" checked>
+                                            del(13q14) (RB1/D13S319)
+                                        </label>
+                                        <div class="fish-right-controls">
+                                            <div class="input-percent-wrapper">
+                                                <input type="number" id="fish-percent-6" class="custom-text-input" min="0" max="100" step="0.1" placeholder="0.0" style="width: 100%; padding: 0.4rem; padding-right: 30px; text-align: right;">
+                                            </div>
+                                            <div class="input-nuclei-wrapper">
+                                                <input type="text" id="fish-nuclei-6" class="custom-text-input" placeholder="positive/total nuclei" style="width: 100%; padding: 0.4rem; text-align: center;">
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                    <div class="fish-item">
+                                        <label class="fish-label">
+                                            <input type="checkbox" id="fish-check-7" value="del(1p32) (CDKN2C)" checked>
+                                            del(1p32) (CDKN2C)
+                                        </label>
+                                        <div class="fish-right-controls">
+                                            <div class="input-percent-wrapper">
+                                                <input type="number" id="fish-percent-7" class="custom-text-input" min="0" max="100" step="0.1" placeholder="0.0" style="width: 100%; padding: 0.4rem; padding-right: 30px; text-align: right;">
+                                            </div>
+                                            <div class="input-nuclei-wrapper">
+                                                <input type="text" id="fish-nuclei-7" class="custom-text-input" placeholder="positive/total nuclei" style="width: 100%; padding: 0.4rem; text-align: center;">
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 1rem;">
+                                    <button id="add-fish-btn" class="btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.875rem; border-radius: 6px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.25rem;">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>
+                                        Add FISH probe
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 2rem; margin-bottom: 1rem;">
+                        <button id="submit-btn" class="btn-primary" style="padding: 0.4rem 2rem; font-size: 0.875rem; font-weight: 600; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Submit</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 0. Set Date to Today
+            const dateInput = document.getElementById('date-of-test');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.value = today;
+            }
+
+            // 1. Sample Type 'Other' toggle handled via inline onchange in HTML
+
+            // 2. Results 'Hyperdiploidy' checkboxes toggle handled via inline onchange in HTML
+
+            // 3. FISH Items Toggle Logic
+            for (let i = 0; i < 8; i++) {
+                const checkbox = document.getElementById(`fish-check-${i}`);
+                const naCheckbox = document.getElementById(`fish-na-${i}`);
+                const percentInput = document.getElementById(`fish-percent-${i}`);
+                
+                const nucleiInput = document.getElementById(`fish-nuclei-${i}`);
+                if (checkbox && percentInput) {
+                    // Auto-check when typing
+                    const autoCheck = () => {
+                        if (!checkbox.checked) {
+                            checkbox.checked = true;
+                        }
+                    };
+                    percentInput.addEventListener('input', autoCheck);
+                    
+                    if (nucleiInput) {
+                        nucleiInput.addEventListener('input', (e) => {
+                            autoCheck();
+                            const val = e.target.value.trim();
+                            const parts = val.split('/');
+                            if (parts.length === 2) {
+                                const pos = parseFloat(parts[0]);
+                                const tot = parseFloat(parts[1]);
+                                if (!isNaN(pos) && !isNaN(tot) && tot > 0) {
+                                    percentInput.value = ((pos / tot) * 100).toFixed(1);
+                                }
+                            }
+                        });
+                    }
+
+                    checkbox.addEventListener('change', (e) => {
+                        if (!e.target.checked) {
+                            percentInput.value = '';
+                            if (nucleiInput) nucleiInput.value = '';
+                        }
+                    });
+                }
+            }
+
+            // 4. Dynamic "Add FISH probe" Button
+            const addFishBtn = document.getElementById('add-fish-btn');
+            const fishContainer = document.getElementById('fish-container');
+            if (addFishBtn && fishContainer) {
+                addFishBtn.addEventListener('click', () => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'fish-item';
+                    itemDiv.innerHTML = `
+                        <input type="text" class="custom-text-input" placeholder="Enter FISH probe" style="width: 200px; flex: none; padding: 0.4rem; transform: translateY(-10px);">
+                        <div class="fish-right-controls">
+                            <div class="input-percent-wrapper">
+                                <input type="number" class="custom-text-input" min="0" max="100" step="0.1" placeholder="0.0" style="width: 100%; padding: 0.4rem; padding-right: 30px; text-align: right;">
+                            </div>
+                            <div class="input-nuclei-wrapper">
+                                <input type="text" class="custom-text-input" placeholder="positive/total nuclei" style="width: 100%; padding: 0.4rem; text-align: center;" oninput="
+                                    const val = this.value.trim();
+                                    const parts = val.split('/');
+                                    if (parts.length === 2) {
+                                        const pos = parseFloat(parts[0]);
+                                        const tot = parseFloat(parts[1]);
+                                        if (!isNaN(pos) && !isNaN(tot) && tot > 0) {
+                                            const pctInput = this.parentElement.previousElementSibling.querySelector('input');
+                                            if (pctInput) {
+                                                pctInput.value = ((pos / tot) * 100).toFixed(1);
+                                            }
+                                        }
+                                    }
+                                ">
+                            </div>
+                            <button class="btn-primary" onclick="this.parentElement.parentElement.remove()" style="padding: 0.4rem 0.8rem; font-size: 0.875rem; border-radius: 6px; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; transform: translateY(6px);" title="Remove">
+                                Remove
+                            </button>
+                        </div>
+                    `;
+                    fishContainer.appendChild(itemDiv);
+                });
+            }
+
+            // Submit Button
+            const submitBtn = document.getElementById('submit-btn');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', () => {
+                    // Logic to pass data if needed
+                    window.close();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

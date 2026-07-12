@@ -68,24 +68,31 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="dob">Date of Birthday</label>
-                                        <input type="date" id="dob" class="custom-text-input">
+                                        <input type="text" id="dob" class="custom-text-input" placeholder="YYYY-MM-DD" onfocus="(this.type='date')" onblur="(this.value ? this.type='date' : this.type='text')">
                                     </div>
                                     <div class="form-group">
-                                        <label for="age">Age at Diagnosis</label>
-                                        <input type="number" id="age" class="custom-text-input" placeholder="e.g. 65">
+                                        <label>Age at Diagnosis</label>
+                                        <div id="age" style="font-weight: 500; padding: 0.5rem 0.5rem; color: #fff;">-</div>
                                     </div>
                                     <div class="form-group">
                                         <label for="sex">Sex</label>
                                         <select id="sex" class="custom-text-input">
-                                            <option value="" disabled selected>Select</option>
-                                            <option value="Male">Male</option>
+                                            <option value="" disabled>Select</option>
+                                            <option value="Male" selected>Male</option>
                                             <option value="Female">Female</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="diagnosis-date">Date of Diagnosis</label>
-                                        <input type="date" id="diagnosis-date" class="custom-text-input">
+                                        <input type="text" id="diagnosis-date" class="custom-text-input" placeholder="YYYY-MM-DD" onfocus="(this.type='date')" onblur="(this.value ? this.type='date' : this.type='text')">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="plasma-cell-bm">BM Plasma Cell</label>
+                                        <input type="text" id="plasma-cell-bm" class="custom-text-input" placeholder="0.0 %" style="color: #fff;">
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                                    <button type="button" class="btn-primary" onclick="window.open('Mutple Myeoma_BM aspiration and biopsy.html', 'BM_Aspiration', 'width=1000,height=800,scrollbars=yes,resizable=yes')" style="padding: 0.4rem 2rem; font-size: 0.875rem; font-weight: 600; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Initial BM aspiration and biopsy</button>
                                 </div>
                             </div>
                         </div>
@@ -93,32 +100,93 @@
                         <!-- Section 2 -->
                         <div class="card">
                             <div class="card-header">
-                                <h3>2. Treatment</h3>
+                                <h3>2. Anti-myeloma Treatment</h3>
                                 <p class="subtitle">Therapy records and responses</p>
                             </div>
                             <div class="card-body">
-                                <div class="form-grid">
+                                <div id="treatment-blocks-container">
+                                    <div class="treatment-block" style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px dashed rgba(255,255,255,0.2);">
+                                        <div class="form-grid">
                                     <div class="form-group">
                                         <label for="line-of-therapy">Line of Therapy</label>
                                         <select id="line-of-therapy" class="custom-text-input">
-                                            <option value="" disabled selected>Select</option>
-                                            <option value="1">1st Line</option>
+                                            <option value="" disabled>Select</option>
+                                            <option value="1" selected>1st Line</option>
                                             <option value="2">2nd Line</option>
-                                            <option value="3">3rd Line or more</option>
+                                            <option value="3">3rd Line</option>
+                                            <option value="4">4th Line</option>
+                                            <option value="5">5th Line</option>
+                                            <option value="6">6th Line</option>
+                                            <option value="7">7th Line</option>
+                                            <option value="8">8th Line</option>
+                                            <option value="9">9th Line</option>
+                                            <option value="10">10th Line</option>
+                                            <option value="11">11th Line</option>
+                                            <option value="12">12th Line</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="regimen">Regimen</label>
-                                        <input type="text" id="regimen" class="custom-text-input" placeholder="e.g. VRd, Dara-Rd">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="asct">ASCT Status</label>
-                                        <select id="asct" class="custom-text-input">
-                                            <option value="" disabled selected>Select</option>
-                                            <option value="Yes">Yes</option>
-                                            <option value="No">No</option>
+                                        <select id="regimen" class="custom-text-input">
+                                            <option value="" disabled selected>Select Regimen</option>
                                         </select>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="treatment-start-date">Date of Treatment Start</label>
+                                        <input type="text" id="treatment-start-date" class="custom-text-input" placeholder="YYYY-MM-DD" onfocus="(this.type='date')" onblur="(this.value ? this.type='date' : this.type='text')">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="response">Best Response</label>
+                                        <select id="response" class="custom-text-input">
+                                            <option value="" disabled>Select</option>
+                                            <option value="NR" selected>NR</option>
+                                            <option value="sCR">sCR</option>
+                                            <option value="CR">CR</option>
+                                            <option value="VGPR">VGPR</option>
+                                            <option value="SD">SD</option>
+                                            <option value="DP">DP</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="disease-progression">Disease Progression</label>
+                                        <select id="disease-progression" class="custom-text-input">
+                                            <option value="" disabled>Select</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No" selected>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="disease-progression-date">Date of Disease Progression</label>
+                                        <input type="text" id="disease-progression-date" class="custom-text-input" placeholder="YYYY-MM-DD" onfocus="(this.type='date')" onblur="(this.value ? this.type='date' : this.type='text')">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="discontinuation-status">Discontinuation</label>
+                                        <select id="discontinuation-status" class="custom-text-input">
+                                            <option value="" disabled>Select</option>
+                                            <option value="Ongoing" selected>Ongoing</option>
+                                            <option value="Discontinue">Discontinue</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="discontinuation-reason">Reason for Discontinuation</label>
+                                        <select id="discontinuation-reason" class="custom-text-input" disabled>
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="Disease progression">Disease progression</option>
+                                            <option value="Toxicity">Toxicity</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="discontinuation-date">Date of Discontinuation</label>
+                                        <input type="text" id="discontinuation-date" class="custom-text-input" placeholder="YYYY-MM-DD" onfocus="(this.type='date')" onblur="(this.value ? this.type='date' : this.type='text')" disabled>
+                                    </div>
+                                </div>
+                                    </div>
+                                </div>
+                                <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem; margin-bottom: 0.5rem;">
+                                    <button type="button" id="remove-treatment-btn" class="btn-primary" style="padding: 0.4rem 2rem; font-size: 0.875rem; font-weight: 600; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background: rgba(239, 68, 68, 0.2); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.5); display: none;">- Remove Last Line</button>
+                                    <button type="button" id="add-treatment-btn" class="btn-primary" style="padding: 0.4rem 2rem; font-size: 0.875rem; font-weight: 600; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">+ Add Line of Therapy</button>
                                 </div>
                             </div>
                         </div>
@@ -141,11 +209,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="last-followup">Last Follow-up / Death Date</label>
-                                        <input type="date" id="last-followup" class="custom-text-input">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="progression-date">Date of Progression</label>
-                                        <input type="date" id="progression-date" class="custom-text-input">
+                                        <input type="text" id="last-followup" class="custom-text-input" placeholder="YYYY-MM-DD" onfocus="(this.type='date')" onblur="(this.value ? this.type='date' : this.type='text')">
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +228,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const dobInput = document.getElementById('dob');
             const diagnosisDateInput = document.getElementById('diagnosis-date');
-            const ageInput = document.getElementById('age');
+            const ageDisplay = document.getElementById('age');
 
             // 1. Set default dates to today
             const today = new Date().toISOString().split('T')[0];
@@ -173,7 +237,7 @@
 
             // 2. Calculate age based on DOB and Diagnosis Date
             function calculateAge() {
-                if (dobInput && diagnosisDateInput && ageInput) {
+                if (dobInput && diagnosisDateInput && ageDisplay) {
                     if (dobInput.value && diagnosisDateInput.value) {
                         const dob = new Date(dobInput.value);
                         const diagDate = new Date(diagnosisDateInput.value);
@@ -185,17 +249,147 @@
                             age--;
                         }
                         
-                        ageInput.value = age >= 0 ? age : 0;
+                        ageDisplay.textContent = age >= 0 ? age : 0;
+                    } else {
+                        ageDisplay.textContent = '-';
                     }
                 }
             }
 
-            // Update age whenever either date changes
             if (dobInput) dobInput.addEventListener('change', calculateAge);
             if (diagnosisDateInput) diagnosisDateInput.addEventListener('change', calculateAge);
-
-            // Calculate initially
             calculateAge();
+
+            // Function to bind events to a treatment block
+            function bindTreatmentBlock(block) {
+                const discontStatus = block.querySelector('[id^="discontinuation-status"]');
+                const discontReason = block.querySelector('[id^="discontinuation-reason"]');
+                const discontDate = block.querySelector('[id^="discontinuation-date"]');
+                
+                if (discontStatus && discontReason && discontDate) {
+                    discontStatus.addEventListener('change', () => {
+                        const isDiscontinued = discontStatus.value === 'Discontinue';
+                        discontReason.disabled = !isDiscontinued;
+                        discontDate.disabled = !isDiscontinued;
+                        
+                        if (!isDiscontinued) {
+                            discontReason.value = '';
+                            discontDate.value = '';
+                            if(discontDate.type === 'date') discontDate.type = 'text';
+                        }
+                    });
+                }
+            }
+
+            const treatmentContainer = document.getElementById('treatment-blocks-container');
+            const firstBlock = document.querySelector('.treatment-block');
+            if (firstBlock) bindTreatmentBlock(firstBlock);
+
+            const addTreatmentBtn = document.getElementById('add-treatment-btn');
+            const removeTreatmentBtn = document.getElementById('remove-treatment-btn');
+            
+            function updateRemoveButtonVisibility() {
+                if (removeTreatmentBtn && treatmentContainer) {
+                    const blocks = treatmentContainer.querySelectorAll('.treatment-block');
+                    removeTreatmentBtn.style.display = blocks.length > 1 ? 'block' : 'none';
+                }
+            }
+            
+            if (removeTreatmentBtn && treatmentContainer) {
+                removeTreatmentBtn.addEventListener('click', () => {
+                    const blocks = treatmentContainer.querySelectorAll('.treatment-block');
+                    if (blocks.length > 1) {
+                        treatmentContainer.removeChild(blocks[blocks.length - 1]);
+                        updateRemoveButtonVisibility();
+                    }
+                });
+            }
+
+            if (addTreatmentBtn && treatmentContainer && firstBlock) {
+                addTreatmentBtn.addEventListener('click', () => {
+                    const clone = firstBlock.cloneNode(true);
+                    
+                    // Update IDs and labels to ensure uniqueness
+                    const uniqueSuffix = '-' + Date.now();
+                    clone.querySelectorAll('input, select').forEach(el => {
+                        if (el.id) {
+                            const oldId = el.id;
+                            el.id = oldId + uniqueSuffix;
+                            const label = clone.querySelector(`label[for="${oldId}"]`);
+                            if (label) label.setAttribute('for', el.id);
+                        }
+                    });
+                    
+                    // Reset inputs
+                    clone.querySelectorAll('input').forEach(input => {
+                        input.value = '';
+                        if (input.type === 'date') input.type = 'text';
+                    });
+                    
+                    // Reset selects
+                    clone.querySelectorAll('select').forEach(select => {
+                        const defaultOpt = select.querySelector('option[selected]');
+                        if (defaultOpt) defaultOpt.selected = true;
+                        else select.selectedIndex = 0;
+                    });
+                    
+                    // Auto-increment Line of Therapy
+                    const prevSelect = treatmentContainer.lastElementChild.querySelector('[id^="line-of-therapy"]');
+                    const newSelect = clone.querySelector('[id^="line-of-therapy"]');
+                    if (prevSelect && newSelect) {
+                        const nextVal = parseInt(prevSelect.value) + 1;
+                        if (nextVal <= 12) newSelect.value = nextVal;
+                    }
+
+                    // Reset disabled state for Discontinuation depending on default
+                    const clonedStatus = clone.querySelector('[id^="discontinuation-status"]');
+                    if (clonedStatus && clonedStatus.value !== 'Discontinue') {
+                        const clonedReason = clone.querySelector('[id^="discontinuation-reason"]');
+                        const clonedDate = clone.querySelector('[id^="discontinuation-date"]');
+                        if(clonedReason) clonedReason.disabled = true;
+                        if(clonedDate) clonedDate.disabled = true;
+                    }
+
+                    bindTreatmentBlock(clone);
+                    treatmentContainer.appendChild(clone);
+                    updateRemoveButtonVisibility();
+                });
+            }
+
+            // Load Regimens from JSON
+            fetch('../HemaCDS2.0_Mutiple Myeloma_Regimens.json')
+                .then(response => response.json())
+                .then(data => {
+                    const regimenSelects = document.querySelectorAll('[id^="regimen"]');
+                    regimenSelects.forEach(select => {
+                        data.forEach(item => {
+                            const option = document.createElement('option');
+                            option.value = item.Regimen;
+                            option.textContent = item.Regimen;
+                            select.appendChild(option);
+                        });
+                    });
+                })
+                .catch(error => console.error('Error loading regimens:', error));
+
+            // Listen for data from popup windows
+            window.addEventListener('message', (event) => {
+                if (event.data && event.data.type === 'BM_ASPIRATION_DATA') {
+                    const diagDateInput = document.getElementById('diagnosis-date');
+                    if (diagDateInput && event.data.date) {
+                        diagDateInput.value = event.data.date;
+                        if (diagDateInput.type === 'date') {
+                            diagDateInput.type = 'text';
+                        }
+                        if (typeof calculateAge === 'function') calculateAge();
+                    }
+                    
+                    const pcInput = document.getElementById('plasma-cell-bm');
+                    if (pcInput && event.data.plasmaCell !== undefined && event.data.plasmaCell !== '') {
+                        pcInput.value = event.data.plasmaCell + ' %';
+                    }
+                }
+            });
         });
     </script>
 </body>
