@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HemaCDS 2.0_Multiple myeloma</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=3">
+    <style>
+        /* 스크롤바 숨기기 */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        .radio-group-horizontal {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .radio-group-horizontal label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .input-unit-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .input-unit-wrapper::after {
+            content: attr(data-unit);
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(calc(-50% + 5px));
+            color: #94a3b8;
+            pointer-events: none;
+            font-size: 0.875rem;
+        }
+
+        /* 숫자 입력창 스피너 숨기기 */
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <h1>HemaCDS 2.0_<span>Multiple myeloma</span></h1>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <section class="content-area" id="content-area">
+                <div class="cycle-planner" id="planner-container" style="margin: 0; max-width: 900px;">
+                    
+                    <div class="planner-header">
+                        <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+                            <h2>Immunoglobulins and Electrophoresis</h2>
+                            <div class="cycle-meta-inputs" style="display: flex; gap: 1rem; align-items: center; transform: translateY(4px);">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <label for="date-of-test" style="font-size: 0.875rem; color: var(--text-secondary);">Date of test</label>
+                                    <input type="date" id="date-of-test" class="custom-text-input" style="margin: 0; padding: 0.4rem; width: auto; font-size: 0.875rem; text-align: center;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="planner-sections">
+                        <!-- Section 1: Immunoglobulins and sFLC -->
+                        <div class="card">
+                            <div class="card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div>
+                                    <h3>1. Serum Immunoglobulins & free light chains</h3>
+                                    <p class="subtitle">Enter Ig levels (mg/dL) and free light chain (mg/L)</p>
+                                </div>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-light); transform: translateY(12px); cursor: pointer;">
+                                    <input type="checkbox" id="sec1-not-done" style="transform: scale(1.2);"> Not done
+                                </label>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: grid; grid-template-columns: repeat(3, minmax(140px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                                    <div style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem;">
+                                        <label for="ig-g" style="font-weight: 500; color: var(--text-main); transform: translateY(4px); width: 100px;">IgG</label>
+                                        <div class="input-unit-wrapper" data-unit="mg/dL">
+                                            <input type="number" id="ig-g" class="custom-text-input" min="0" step="0.1" placeholder="0.0" style="width: 120px; padding: 0.5rem; padding-right: 60px; text-align: right;">
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem;">
+                                        <label for="ig-a" style="font-weight: 500; color: var(--text-main); transform: translateY(4px); width: 100px;">IgA</label>
+                                        <div class="input-unit-wrapper" data-unit="mg/dL">
+                                            <input type="number" id="ig-a" class="custom-text-input" min="0" step="0.1" placeholder="0.0" style="width: 120px; padding: 0.5rem; padding-right: 60px; text-align: right;">
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem;">
+                                        <label for="ig-m" style="font-weight: 500; color: var(--text-main); transform: translateY(4px); width: 100px;">IgM</label>
+                                        <div class="input-unit-wrapper" data-unit="mg/dL">
+                                            <input type="number" id="ig-m" class="custom-text-input" min="0" step="0.1" placeholder="0.0" style="width: 120px; padding: 0.5rem; padding-right: 60px; text-align: right;">
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem;">
+                                        <label for="ig-d" style="font-weight: 500; color: var(--text-main); transform: translateY(4px); width: 100px;">IgD</label>
+                                        <div class="input-unit-wrapper" data-unit="mg/dL">
+                                            <input type="number" id="ig-d" class="custom-text-input" min="0" step="0.1" placeholder="0.0" style="width: 120px; padding: 0.5rem; padding-right: 60px; text-align: right;">
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem;">
+                                        <label for="ig-e" style="font-weight: 500; color: var(--text-main); transform: translateY(4px); width: 100px;">IgE</label>
+                                        <div class="input-unit-wrapper" data-unit="mg/dL">
+                                            <input type="number" id="ig-e" class="custom-text-input" min="0" step="0.1" placeholder="0.0" style="width: 120px; padding: 0.5rem; padding-right: 60px; text-align: right;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="display: grid; grid-template-columns: repeat(3, minmax(140px, 1fr)); gap: 1rem;">
+                                    <div style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem;">
+                                        <label for="sflc-kappa" style="font-weight: 500; color: var(--text-main); transform: translateY(-4px); width: 100px;">kappa</label>
+                                        <div class="input-unit-wrapper" data-unit="mg/L" style="transform: translateY(-8px);">
+                                            <input type="number" id="sflc-kappa" class="custom-text-input" min="0" step="0.1" placeholder="0.0" style="width: 120px; padding: 0.5rem; padding-right: 60px; text-align: right;">
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem;">
+                                        <label for="sflc-lambda" style="font-weight: 500; color: var(--text-main); transform: translateY(-4px); width: 100px;">lambda</label>
+                                        <div class="input-unit-wrapper" data-unit="mg/L" style="transform: translateY(-8px);">
+                                            <input type="number" id="sflc-lambda" class="custom-text-input" min="0" step="0.1" placeholder="0.0" style="width: 120px; padding: 0.5rem; padding-right: 60px; text-align: right;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Serum PEP / IEP -->
+                        <div class="card">
+                            <div class="card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div>
+                                    <h3>2. Serum PEP / IEP</h3>
+                                    <p class="subtitle">Enter serum PEP (g/dL) and select IEP types</p>
+                                </div>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-light); transform: translateY(12px); cursor: pointer;">
+                                    <input type="checkbox" id="sec2-not-done" style="transform: scale(1.2);"> Not done
+                                </label>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <label for="serum-pep" style="font-weight: 500; color: var(--text-main); transform: translateY(4px); width: 100px;">Serum PEP</label>
+                                        <div class="input-unit-wrapper" data-unit="g/dL">
+                                            <input type="number" id="serum-pep" class="custom-text-input" min="0" step="0.1" placeholder="0.0" style="width: 120px; padding: 0.5rem; padding-right: 60px; text-align: right;">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-weight: 500; color: var(--text-main); margin-bottom: 0.5rem;">Heavy chain</label>
+                                        <div class="radio-group-horizontal">
+                                            <label><input type="radio" name="iep-heavy" value="IgG"> IgG</label>
+                                            <label><input type="radio" name="iep-heavy" value="IgA"> IgA</label>
+                                            <label><input type="radio" name="iep-heavy" value="IgM"> IgM</label>
+                                            <label><input type="radio" name="iep-heavy" value="IgD"> IgD</label>
+                                            <label><input type="radio" name="iep-heavy" value="IgE"> IgE</label>
+                                            <label><input type="radio" name="iep-heavy" value="Light chain only"> Light chain only</label>
+                                            <label><input type="radio" name="iep-heavy" value="No monoclonal gammopathy"> No monoclonal gammopathy</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-weight: 500; color: var(--text-main); margin-bottom: 0.5rem;">Light chain</label>
+                                        <div class="radio-group-horizontal">
+                                            <label><input type="radio" name="iep-light" value="Kappa"> Kappa</label>
+                                            <label><input type="radio" name="iep-light" value="Lambda"> Lambda</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 3: Urine free light chains -->
+                        <div class="card">
+                            <div class="card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div>
+                                    <h3>3. Urine free light chains</h3>
+                                    <p class="subtitle">Enter urine free light chain (mg/L)</p>
+                                </div>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-light); transform: translateY(12px); cursor: pointer;">
+                                    <input type="checkbox" id="sec3-not-done" style="transform: scale(1.2);"> Not done
+                                </label>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: grid; grid-template-columns: repeat(3, minmax(140px, 1fr)); gap: 1rem;">
+                                    <div style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem;">
+                                        <label for="urine-uflc-kappa" style="font-weight: 500; color: var(--text-main); transform: translateY(-4px); width: 100px;">kappa</label>
+                                        <div class="input-unit-wrapper" data-unit="mg/L" style="transform: translateY(-8px);">
+                                            <input type="number" id="urine-uflc-kappa" class="custom-text-input" min="0" step="0.1" placeholder="0.0" style="width: 120px; padding: 0.5rem; padding-right: 60px; text-align: right;">
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem;">
+                                        <label for="urine-uflc-lambda" style="font-weight: 500; color: var(--text-main); transform: translateY(-4px); width: 100px;">lambda</label>
+                                        <div class="input-unit-wrapper" data-unit="mg/L" style="transform: translateY(-8px);">
+                                            <input type="number" id="urine-uflc-lambda" class="custom-text-input" min="0" step="0.1" placeholder="0.0" style="width: 120px; padding: 0.5rem; padding-right: 60px; text-align: right;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Urine PEP / IEP -->
+                        <div class="card">
+                            <div class="card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div>
+                                    <h3>4. Urine PEP / IEP</h3>
+                                    <p class="subtitle">Enter urine PEP and select IEP types</p>
+                                </div>
+                                <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-light); transform: translateY(12px); cursor: pointer;">
+                                    <input type="checkbox" id="sec4-not-done" style="transform: scale(1.2);"> Not done
+                                </label>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <label for="urine-pep" style="font-weight: 500; color: var(--text-main); transform: translateY(4px); width: 100px;">Urine PEP</label>
+                                        <div class="input-unit-wrapper" id="urine-pep-unit-wrapper" data-unit="mg/day">
+                                            <input type="number" id="urine-pep" class="custom-text-input" min="0" step="0.1" placeholder="0.0" style="width: 120px; padding: 0.5rem; padding-right: 75px; text-align: right;">
+                                        </div>
+                                        <select id="urine-pep-type" class="custom-text-input" style="margin-left: 0.5rem; padding: 0.5rem; width: auto;">
+                                            <option value="24hr urine" selected>24hr urine</option>
+                                            <option value="12hr urine">12hr urine</option>
+                                            <option value="spot urine">spot urine</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-weight: 500; color: var(--text-main); margin-bottom: 0.5rem;">Heavy chain</label>
+                                        <div class="radio-group-horizontal">
+                                            <label><input type="radio" name="urine-iep-heavy" value="IgG"> IgG</label>
+                                            <label><input type="radio" name="urine-iep-heavy" value="IgA"> IgA</label>
+                                            <label><input type="radio" name="urine-iep-heavy" value="IgM"> IgM</label>
+                                            <label><input type="radio" name="urine-iep-heavy" value="IgD"> IgD</label>
+                                            <label><input type="radio" name="urine-iep-heavy" value="IgE"> IgE</label>
+                                            <label><input type="radio" name="urine-iep-heavy" value="Light chain only"> Light chain only</label>
+                                            <label><input type="radio" name="urine-iep-heavy" value="No monoclonal gammopathy"> No monoclonal gammopathy</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label style="display: block; font-weight: 500; color: var(--text-main); margin-bottom: 0.5rem;">Light chain</label>
+                                        <div class="radio-group-horizontal">
+                                            <label><input type="radio" name="urine-iep-light" value="Kappa"> Kappa</label>
+                                            <label><input type="radio" name="urine-iep-light" value="Lambda"> Lambda</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 2rem; margin-bottom: 1rem;">
+                        <button id="submit-btn" class="btn-primary" style="padding: 0.4rem 2rem; font-size: 0.875rem; font-weight: 600; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Submit</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set Date to Today
+            const dateInput = document.getElementById('date-of-test');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.value = today;
+            }
+            // Urine PEP unit dynamic change
+            const urinePepTypeSelect = document.getElementById('urine-pep-type');
+            const urinePepUnitWrapper = document.getElementById('urine-pep-unit-wrapper');
+            
+            if (urinePepTypeSelect && urinePepUnitWrapper) {
+                urinePepTypeSelect.addEventListener('change', (e) => {
+                    const selected = e.target.value;
+                    if (selected === '24hr urine') {
+                        urinePepUnitWrapper.setAttribute('data-unit', 'mg/day');
+                    } else if (selected === '12hr urine') {
+                        urinePepUnitWrapper.setAttribute('data-unit', 'mg/12hrs');
+                    } else if (selected === 'spot urine') {
+                        urinePepUnitWrapper.setAttribute('data-unit', 'mg/dL');
+                    }
+                });
+            }
+
+            // Disable Light chain if "No monoclonal gammopathy" is selected
+            const toggleLightChain = (heavyName, lightName) => {
+                const heavyRadios = document.querySelectorAll(`input[name="${heavyName}"]`);
+                const lightRadios = document.querySelectorAll(`input[name="${lightName}"]`);
+                
+                heavyRadios.forEach(radio => {
+                    radio.addEventListener('change', (e) => {
+                        const isNoMono = e.target.value === 'No monoclonal gammopathy';
+                        lightRadios.forEach(lightRadio => {
+                            lightRadio.disabled = isNoMono;
+                            if (isNoMono) {
+                                lightRadio.checked = false; // Clear selection when disabled
+                            }
+                        });
+                    });
+                });
+            };
+
+            toggleLightChain('iep-heavy', 'iep-light');
+            toggleLightChain('urine-iep-heavy', 'urine-iep-light');
+
+            // Handle "Not done" checkboxes
+            const setupNotDoneToggle = (checkboxId) => {
+                const checkbox = document.getElementById(checkboxId);
+                if (checkbox) {
+                    const card = checkbox.closest('.card');
+                    if (card) {
+                        const cardBody = card.querySelector('.card-body');
+                        if (cardBody) {
+                            checkbox.addEventListener('change', (e) => {
+                                const isDisabled = e.target.checked;
+                                const inputs = cardBody.querySelectorAll('input, select');
+                                inputs.forEach(input => {
+                                    input.disabled = isDisabled;
+                                    if (isDisabled && (input.type === 'number' || input.type === 'text')) {
+                                        input.value = '';
+                                    } else if (isDisabled && (input.type === 'radio' || input.type === 'checkbox')) {
+                                        input.checked = false;
+                                    }
+                                });
+                            });
+                        }
+                    }
+                }
+            };
+
+            setupNotDoneToggle('sec1-not-done');
+            setupNotDoneToggle('sec2-not-done');
+            setupNotDoneToggle('sec3-not-done');
+            setupNotDoneToggle('sec4-not-done');
+
+
+
+            // Submit logic
+            const submitBtn = document.getElementById('submit-btn');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', () => {
+                    const testDate = dateInput ? dateInput.value : '';
+                    
+                    if (window.opener && !window.opener.closed) {
+                        window.opener.postMessage({
+                            type: 'ELECTROPHORESIS_DATA',
+                            date: testDate
+                        }, '*');
+                    }
+                    window.close();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
