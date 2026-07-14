@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HemaCDS 2.0 Patient Database</title>
+    <title>Eunpyeong St. Mary's Myeloma Center Database</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,12 +23,12 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.9rem;
-            text-align: left;
+            text-align: center;
             color: var(--text-primary);
         }
 
         .data-table th, .data-table td {
-            padding: 1rem 1.25rem;
+            padding: 0.8rem 0.5rem;
             border-bottom: 1px solid var(--border-glass);
             white-space: nowrap;
         }
@@ -124,17 +124,17 @@
     <div class="app-container">
         <header class="app-header">
             <div class="logo">
-                <h1>HemaCDS 2.0 <span>Eunpyeong St. Mary's Myeloma Center Database</span></h1>
+                <h1>Eunpyeong St. Mary's Myeloma Center Database</h1>
             </div>
         </header>
 
         <main class="app-main">
             <section class="content-area" id="content-area">
-                <div class="cycle-planner" id="planner-container" style="margin: 0; max-width: 1200px;">
+                <div class="cycle-planner" id="planner-container" style="margin: 0; max-width: 900px;">
                     
                     <div class="planner-header">
                         <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
-                            <h2>Patients List</h2>
+                            <h2>Dashboard</h2>
                         </div>
                     </div>
 
@@ -148,9 +148,9 @@
                                             <circle cx="11" cy="11" r="8"></circle>
                                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                                         </svg>
-                                        <input type="text" id="search-input" class="custom-text-input" placeholder="Search by ID or Name..." style="margin: 0; max-width: none;" onkeyup="filterPatients()">
+                                        <input type="text" id="search-input" class="custom-text-input" placeholder="Search by ID or Name..." style="margin: 0; max-width: none; padding-top: 0.5rem; padding-bottom: 0.5rem;" onkeyup="filterPatients()">
                                     </div>
-                                    <button class="btn-primary" onclick="window.location.href='Eunpyeong_Multiple Myeloma.html'" style="padding: 0.6rem 1.5rem; border-radius: 8px;">
+                                    <button class="btn-primary" onclick="window.location.href='Eunpyeong_Multiple Myeloma.html'" style="padding: 0.5rem 1.1rem; border-radius: 8px;">
                                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                             <line x1="12" y1="5" x2="12" y2="19"></line>
                                             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -167,7 +167,6 @@
                                                 <th>Name</th>
                                                 <th>Age / Sex</th>
                                                 <th>Diagnosis Date</th>
-                                                <th>BM Plasma Cell</th>
                                                 <th>Vital Status</th>
                                                 <th>Last Follow-up</th>
                                                 <th>Actions</th>
@@ -188,9 +187,7 @@
     </div>
 
     <script>
-        // Mock data representing database_schema.sql `patients` table
-        // Replace this with an actual API call later:
-        // fetch('/api/patients').then(res => res.json()).then(data => renderPatients(data));
+        let allPatients = [];
         
         const mockPatients = [
             {
@@ -199,7 +196,6 @@
                 age_at_diagnosis: 65,
                 sex: "Male",
                 diagnosis_date: "2023-01-15",
-                plasma_cell_bm: "25.5 %",
                 vital_status: "Alive",
                 last_followup_date: "2024-05-20"
             },
@@ -209,7 +205,6 @@
                 age_at_diagnosis: 72,
                 sex: "Female",
                 diagnosis_date: "2022-11-05",
-                plasma_cell_bm: "40.0 %",
                 vital_status: "Alive",
                 last_followup_date: "2024-06-10"
             },
@@ -219,7 +214,6 @@
                 age_at_diagnosis: 58,
                 sex: "Male",
                 diagnosis_date: "2021-08-22",
-                plasma_cell_bm: "60.2 %",
                 vital_status: "Deceased",
                 last_followup_date: "2023-12-01"
             },
@@ -229,7 +223,6 @@
                 age_at_diagnosis: 69,
                 sex: "Male",
                 diagnosis_date: "2024-02-10",
-                plasma_cell_bm: "15.0 %",
                 vital_status: "Alive",
                 last_followup_date: "2024-06-25"
             }
@@ -240,7 +233,7 @@
             tbody.innerHTML = '';
 
             if (data.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2rem;">No patients found.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 2rem;">No patients found.</td></tr>';
                 return;
             }
 
@@ -252,11 +245,10 @@
                 tr.innerHTML = `
                     <td style="font-weight: 500;">${p.patient_id}</td>
                     <td>${p.patient_name}</td>
-                    <td>${p.age_at_diagnosis} / ${p.sex.charAt(0)}</td>
-                    <td>${p.diagnosis_date}</td>
-                    <td>${p.plasma_cell_bm}</td>
-                    <td><span class="status-badge ${statusClass}">${p.vital_status}</span></td>
-                    <td style="color: var(--text-muted);">${p.last_followup_date}</td>
+                    <td>${p.age_at_diagnosis || '-'} / ${p.sex ? p.sex.charAt(0) : '-'}</td>
+                    <td>${p.diagnosis_date || '-'}</td>
+                    <td><span class="status-badge ${statusClass}">${p.vital_status || '-'}</span></td>
+                    <td style="color: var(--text-muted);">${p.last_followup_date || '-'}</td>
                     <td>
                         <button class="action-btn" onclick="viewDetails('${p.patient_id}')">View / Edit</button>
                     </td>
@@ -267,22 +259,34 @@
 
         function filterPatients() {
             const query = document.getElementById('search-input').value.toLowerCase();
-            const filtered = mockPatients.filter(p => 
-                p.patient_id.toLowerCase().includes(query) || 
-                p.patient_name.toLowerCase().includes(query)
+            const filtered = allPatients.filter(p => 
+                (p.patient_id && p.patient_id.toLowerCase().includes(query)) || 
+                (p.patient_name && p.patient_name.toLowerCase().includes(query))
             );
             renderPatients(filtered);
         }
 
         function viewDetails(patientId) {
-            // In a real application, this would pass the patient ID to the form page
-            // e.g., window.location.href = `Eunpyeong_Multiple Myeloma.html?id=${patientId}`;
             window.location.href = 'Eunpyeong_Multiple Myeloma.html';
         }
 
         // Initialize table
         document.addEventListener('DOMContentLoaded', () => {
-            renderPatients(mockPatients);
+            // Fetch from local Python server
+            fetch('http://127.0.0.1:5000/api/patients')
+                .then(res => {
+                    if (!res.ok) throw new Error('Network response was not ok');
+                    return res.json();
+                })
+                .then(data => {
+                    allPatients = data.length > 0 ? data : mockPatients; // Use mock if DB is empty for demo
+                    renderPatients(allPatients);
+                })
+                .catch(err => {
+                    console.warn("Could not fetch from server, falling back to mock data.", err);
+                    allPatients = mockPatients;
+                    renderPatients(allPatients);
+                });
         });
 
     </script>
