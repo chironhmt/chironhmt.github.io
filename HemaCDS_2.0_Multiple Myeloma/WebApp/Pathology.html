@@ -302,6 +302,11 @@
                         el.style.display = (val === 'pleura') ? 'inline-flex' : 'inline-block';
                     } else {
                         el.style.display = 'none';
+                        // Clear sub-radios if this is pleura container being hidden
+                        if (val === 'pleura') {
+                            const pleuraRadios = el.querySelectorAll('input[name="pleura-side"]');
+                            pleuraRadios.forEach(radio => radio.checked = false);
+                        }
                     }
                 }
             }
@@ -383,6 +388,23 @@
                     ihcContainer.style.pointerEvents = isDisabled ? 'none' : 'auto';
                 }
             }
+
+            // Make Biopsy Site and Pleura Side radios deselectable/toggleable
+            const biopsyRadios = document.querySelectorAll('input[name="biopsy-site"], input[name="pleura-side"]');
+            biopsyRadios.forEach(radio => {
+                let isChecked = false;
+                radio.addEventListener('mousedown', function() {
+                    isChecked = this.checked;
+                });
+                radio.addEventListener('click', function() {
+                    if (isChecked) {
+                        this.checked = false;
+                        if (this.name === 'biopsy-site') {
+                            toggleBiopsySiteSpecify(null);
+                        }
+                    }
+                });
+            });
         });
     </script>
 </body>
