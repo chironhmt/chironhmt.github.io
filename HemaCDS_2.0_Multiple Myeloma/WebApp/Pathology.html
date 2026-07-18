@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HemaCDS 2.0_Multiple myeloma - Pathology</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=4">
+    <style>
+        .custom-textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+            font-size: 0.9rem;
+            transition: border-color var(--transition-fast, 0.2s);
+        }
+        .custom-textarea:focus {
+            outline: none;
+            border-color: #60a5fa;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .radio-group-horizontal {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .radio-group-horizontal label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+        .radio-group-horizontal input[type="radio"] {
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+        .checkbox-group-horizontal {
+            display: flex;
+            gap: 1.25rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .checkbox-group-horizontal label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-main);
+        }
+        .checkbox-group-horizontal input[type="checkbox"] {
+            transform: scale(1.15);
+            cursor: pointer;
+        }
+        div[id$="checkboxes"] label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        div[id$="checkboxes"] input[type="checkbox"],
+        div[id$="checkboxes"] input[type="radio"] {
+            margin: 0;
+        }
+        div[id$="checkboxes"] .custom-text-input {
+            margin-top: 0;
+            width: 170px !important;
+            line-height: normal;
+        }
+        div[id$="checkboxes"] label + div {
+            margin-left: calc(0.5rem + 8px) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <h1 style="font-size: 1.5rem;">HemaCDS 2.0_<span>Multiple myeloma</span></h1>
+            </div>
+        </header>
+
+        <main class="app-main">
+            <section class="content-area" id="content-area">
+                <div class="cycle-planner" id="planner-container" style="margin: 0; max-width: 900px;">
+                    
+                    <div class="planner-header">
+                        <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
+                            <h2 style="font-size: 1.5rem; font-weight: 500; color: var(--text-light);">Pathology Reports</h2>
+                        </div>
+                    </div>
+
+                    <div class="planner-sections">
+                        
+                        <!-- Section 1: Biopsy -->
+                        <div class="card">
+                            <div class="card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div>
+                                    <h3>1. Biopsy</h3>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 1rem; transform: translateY(4px);">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <label for="date-biopsy" style="font-size: 0.875rem; color: var(--text-secondary);">Date of test</label>
+                                        <input type="date" data-date="" id="date-biopsy" class="custom-text-input date-input custom-date-format" style="margin: 0; padding: 0.4rem; width: 118px; font-size: 0.875rem; text-align: center;">
+                                    </div>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-light); cursor: pointer;">
+                                        <input type="radio" id="biopsy-not-done" name="biopsy-done" value="not-done" style="transform: scale(1.2);"> Not done
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div style="margin-bottom: 1.5rem;">
+                                    <label style="display: block; font-weight: 500; color: var(--text-main); margin-bottom: 0.5rem;">Interpretation / Diagnosis</label>
+                                    <textarea class="custom-textarea" placeholder="Enter interpretation for pathology biopsy..." style="width: 80%;"></textarea>
+                                    <div style="width: 80%; display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                                        <button type="button" class="btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.875rem; border-radius: 6px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.25rem; margin: 0; background-color: #8b5cf6;">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path>
+                                            </svg>
+                                            AI Assistant
+                                        </button>
+                                        <label class="btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.875rem; border-radius: 6px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.25rem; margin: 0;">
+                                            <input type="file" style="display: none;" accept=".pdf,.docx,.txt" multiple>
+                                            Upload Report
+                                        </label>
+                                    </div>
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 1.25rem; width: 100%;">
+                                    <div style="display: flex; align-items: center; gap: 1rem;">
+                                        <label style="font-weight: 500; color: var(--text-main); width: 120px;">Biopsy Type</label>
+                                        <select class="custom-select" id="biopsy-type" onchange="document.getElementById('biopsy-type-other-container').style.display = (this.value === 'others') ? 'inline-block' : 'none'" style="padding: 0.3rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.9rem; outline: none;">
+                                            <option value="" disabled selected style="color: #000;">Select Biopsy Type</option>
+                                            <option value="excisional" style="color: #000;">Excisional</option>
+                                            <option value="incisional" style="color: #000;">Incisional</option>
+                                            <option value="fine needle" style="color: #000;">Fine Needle</option>
+                                            <option value="core needle" style="color: #000;">Core Needle</option>
+                                            <option value="others" style="color: #000;">Others</option>
+                                        </select>
+                                        <span id="biopsy-type-other-container" style="display: none; margin-left: 0.5rem;">
+                                            <input type="text" id="biopsy-type-other" class="custom-text-input" placeholder="Specify other type..." style="display: inline-block; width: 180px; padding: 0.3rem 0.5rem; font-size: 0.85rem; margin-top: 0;">
+                                        </span>
+                                    </div>
+                                    <div style="display: flex; align-items: center; gap: 1rem;">
+                                        <label for="biopsy-site" style="font-weight: 500; color: var(--text-main); width: 120px;">Biopsy Site</label>
+                                        <input type="text" id="biopsy-site" class="custom-text-input" placeholder="e.g. Bone, Soft tissue, Lymph node" style="width: 250px; padding: 0.3rem 0.5rem; font-size: 0.85rem; margin-top: 0;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Immunohistochemistry (IHC) -->
+                        <div class="card">
+                            <div class="card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div>
+                                    <h3>2. Immunohistochemistry (IHC)</h3>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 1rem; transform: translateY(4px);">
+                                    <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-light); cursor: pointer;">
+                                        <input type="radio" id="ihc-not-done" name="ihc-done" value="not-done" style="transform: scale(1.2);"> Not done
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: flex; align-items: flex-start; gap: 2rem; width: 100%;">
+                                    <div style="flex: 1;">
+                                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                            <label style="font-weight: 500; color: var(--text-main); width: 120px;">Plasma Cell Clone</label>
+                                            <select class="custom-select" id="ihc-monoclonality" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none;">
+                                                <option value="" disabled selected style="color: #000;">Select Monoclonality</option>
+                                                <option value="monoclonal" style="color: #000;">Monoclonal</option>
+                                                <option value="polyclonal" style="color: #000;">Polyclonal</option>
+                                                <option value="negative" style="color: #000;">Negative</option>
+                                            </select>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                            <div style="display: flex; align-items: center;">
+                                                <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CD138"> CD138</label>
+                                                <select class="custom-select" id="ihc-cd138-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
+                                                    <option value="positive" style="color: #000;">Positive</option>
+                                                    <option value="negative" style="color: #000;">Negative</option>
+                                                </select>
+                                            </div>
+                                            <div style="display: flex; align-items: center;">
+                                                <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CD56"> CD56</label>
+                                                <select class="custom-select" id="ihc-cd56-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
+                                                    <option value="positive" style="color: #000;">Positive</option>
+                                                    <option value="negative" style="color: #000;">Negative</option>
+                                                </select>
+                                            </div>
+                                            <div style="display: flex; align-items: center;">
+                                                <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CD19"> CD19</label>
+                                                <select class="custom-select" id="ihc-cd19-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
+                                                    <option value="negative" style="color: #000;">Negative</option>
+                                                    <option value="positive" style="color: #000;">Positive</option>
+                                                </select>
+                                            </div>
+                                            <div style="display: flex; align-items: center;">
+                                                <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CyclinD1"> Cyclin D1</label>
+                                                <select class="custom-select" id="ihc-cyclind1-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
+                                                    <option value="negative" style="color: #000;">Negative</option>
+                                                    <option value="positive" style="color: #000;">Positive</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div style="display: flex; justify-content: flex-end; margin-top: 2rem; margin-bottom: 1rem;">
+                        <button id="submit-btn" class="btn-primary" style="padding: 0.4rem 2rem; font-size: 0.875rem; font-weight: 600; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">Submit</button>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInputs = document.querySelectorAll('.date-input');
+            dateInputs.forEach(input => {
+                input.value = today;
+                input.setAttribute('data-date', today);
+                input.addEventListener('change', function() {
+                    this.setAttribute('data-date', this.value);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
