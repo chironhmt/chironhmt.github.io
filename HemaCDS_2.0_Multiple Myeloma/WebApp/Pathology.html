@@ -105,11 +105,11 @@
 
                     <div class="planner-sections">
                         
-                        <!-- Section 1: Biopsy -->
+                        <!-- Section 1: Biopsy & IHC -->
                         <div class="card">
                             <div class="card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
                                 <div>
-                                    <h3>1. Biopsy</h3>
+                                    <h3>1. Biopsy & IHC</h3>
                                 </div>
                                 <div style="display: flex; align-items: center; gap: 1rem; transform: translateY(4px);">
                                     <div style="display: flex; align-items: center; gap: 0.5rem;">
@@ -124,8 +124,8 @@
                             <div class="card-body">
                                 <div style="margin-bottom: 1.5rem;">
                                     <label style="display: block; font-weight: 500; color: var(--text-main); margin-bottom: 0.5rem;">Interpretation / Diagnosis</label>
-                                    <textarea class="custom-textarea" placeholder="Enter interpretation for pathology biopsy..." style="width: 80%;"></textarea>
-                                    <div style="width: 80%; display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
+                                    <textarea class="custom-textarea" placeholder="Enter interpretation for pathology biopsy..." style="width: 100%; max-width: 820px;"></textarea>
+                                    <div style="width: 100%; max-width: 820px; display: flex; justify-content: flex-end; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
                                         <button type="button" class="btn-primary" style="padding: 0.4rem 0.8rem; font-size: 0.875rem; border-radius: 6px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.25rem; margin: 0; background-color: #8b5cf6;">
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                 <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path>
@@ -138,81 +138,79 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div style="display: flex; flex-direction: column; gap: 1.25rem; width: 100%;">
-                                    <div style="display: flex; align-items: center; gap: 1rem;">
-                                        <label style="font-weight: 500; color: var(--text-main); width: 120px;">Biopsy Type</label>
-                                        <select class="custom-select" id="biopsy-type" onchange="document.getElementById('biopsy-type-other-container').style.display = (this.value === 'others') ? 'inline-block' : 'none'" style="padding: 0.3rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.9rem; outline: none;">
-                                            <option value="" disabled selected style="color: #000;">Select Biopsy Type</option>
-                                            <option value="excisional" style="color: #000;">Excisional</option>
-                                            <option value="incisional" style="color: #000;">Incisional</option>
-                                            <option value="fine needle" style="color: #000;">Fine Needle</option>
-                                            <option value="core needle" style="color: #000;">Core Needle</option>
-                                            <option value="others" style="color: #000;">Others</option>
-                                        </select>
-                                        <span id="biopsy-type-other-container" style="display: none; margin-left: 0.5rem;">
-                                            <input type="text" id="biopsy-type-other" class="custom-text-input" placeholder="Specify other type..." style="display: inline-block; width: 180px; padding: 0.3rem 0.5rem; font-size: 0.85rem; margin-top: 0;">
-                                        </span>
-                                    </div>
-                                    <div style="display: flex; align-items: center; gap: 1rem;">
-                                        <label for="biopsy-site" style="font-weight: 500; color: var(--text-main); width: 120px;">Biopsy Site</label>
-                                        <input type="text" id="biopsy-site" class="custom-text-input" placeholder="e.g. Bone, Soft tissue, Lymph node" style="width: 250px; padding: 0.3rem 0.5rem; font-size: 0.85rem; margin-top: 0;">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Section 2: Immunohistochemistry (IHC) -->
-                        <div class="card">
-                            <div class="card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
-                                <div>
-                                    <h3>2. Immunohistochemistry (IHC)</h3>
-                                </div>
-                                <div style="display: flex; align-items: center; gap: 1rem; transform: translateY(4px);">
-                                    <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-light); cursor: pointer;">
-                                        <input type="radio" id="ihc-not-done" name="ihc-done" value="not-done" style="transform: scale(1.2);"> Not done
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div style="display: flex; align-items: flex-start; gap: 2rem; width: 100%;">
-                                    <div style="flex: 1;">
-                                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                                            <label style="font-weight: 500; color: var(--text-main); width: 120px;">Plasma Cell Clone</label>
-                                            <select class="custom-select" id="ihc-monoclonality" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none;">
-                                                <option value="" disabled selected style="color: #000;">Select Monoclonality</option>
-                                                <option value="monoclonal" style="color: #000;">Monoclonal</option>
-                                                <option value="polyclonal" style="color: #000;">Polyclonal</option>
-                                                <option value="negative" style="color: #000;">Negative</option>
+                                <div style="display: flex; gap: 3rem; width: 100%; max-width: 820px; flex-wrap: wrap;">
+                                    <!-- Left side: Biopsy Details -->
+                                    <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 1.25rem;">
+                                        <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-light); margin-bottom: 0.25rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">Biopsy Details</h4>
+                                        <div style="display: flex; align-items: center; gap: 1rem;">
+                                            <label style="font-weight: 500; color: var(--text-main); width: 120px;">Biopsy Type</label>
+                                            <select class="custom-select" id="biopsy-type" onchange="document.getElementById('biopsy-type-other-container').style.display = (this.value === 'others') ? 'inline-block' : 'none'" style="padding: 0.3rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.9rem; outline: none;">
+                                                <option value="" disabled selected style="color: #000;">Select Biopsy Type</option>
+                                                <option value="excisional" style="color: #000;">Excisional</option>
+                                                <option value="incisional" style="color: #000;">Incisional</option>
+                                                <option value="fine needle" style="color: #000;">Fine Needle</option>
+                                                <option value="core needle" style="color: #000;">Core Needle</option>
+                                                <option value="others" style="color: #000;">Others</option>
                                             </select>
                                         </div>
-                                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                                            <div style="display: flex; align-items: center;">
-                                                <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CD138"> CD138</label>
-                                                <select class="custom-select" id="ihc-cd138-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
-                                                    <option value="positive" style="color: #000;">Positive</option>
+                                        <div id="biopsy-type-other-container" style="display: none; margin-left: 136px;">
+                                            <input type="text" id="biopsy-type-other" class="custom-text-input" placeholder="Specify other type..." style="display: inline-block; width: 180px; padding: 0.3rem 0.5rem; font-size: 0.85rem; margin-top: 0;">
+                                        </div>
+                                        <div style="display: flex; align-items: center; gap: 1rem;">
+                                            <label for="biopsy-site" style="font-weight: 500; color: var(--text-main); width: 120px;">Biopsy Site</label>
+                                            <input type="text" id="biopsy-site" class="custom-text-input" placeholder="e.g. Bone, Soft tissue, Lymph node" style="width: 220px; padding: 0.3rem 0.5rem; font-size: 0.85rem; margin-top: 0;">
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Right side: IHC Details -->
+                                    <div style="flex: 1; min-width: 280px; border-left: 1px dashed rgba(255,255,255,0.15); padding-left: 2rem; display: flex; flex-direction: column; gap: 1.25rem;">
+                                        <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-light); margin-bottom: 0.25rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">Immunohistochemistry (IHC)</h4>
+                                        <div style="display: flex; align-items: center; gap: 1rem;">
+                                            <label style="font-weight: 500; color: var(--text-main); width: 120px;">IHC Done</label>
+                                            <select class="custom-select" id="ihc-done-yesno" onchange="document.getElementById('ihc-details-container').style.display = (this.value === 'yes') ? 'block' : 'none'" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none;">
+                                                <option value="yes" style="color: #000;">Yes</option>
+                                                <option value="no" style="color: #000;">No</option>
+                                            </select>
+                                        </div>
+                                        <div id="ihc-details-container" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                                <label style="font-weight: 500; color: var(--text-main); width: 120px;">Plasma Cell Clone</label>
+                                                <select class="custom-select" id="ihc-monoclonality" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none;">
+                                                    <option value="" disabled selected style="color: #000;">Select Monoclonality</option>
+                                                    <option value="monoclonal" style="color: #000;">Monoclonal</option>
+                                                    <option value="polyclonal" style="color: #000;">Polyclonal</option>
                                                     <option value="negative" style="color: #000;">Negative</option>
                                                 </select>
                                             </div>
-                                            <div style="display: flex; align-items: center;">
-                                                <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CD56"> CD56</label>
-                                                <select class="custom-select" id="ihc-cd56-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
-                                                    <option value="positive" style="color: #000;">Positive</option>
-                                                    <option value="negative" style="color: #000;">Negative</option>
-                                                </select>
-                                            </div>
-                                            <div style="display: flex; align-items: center;">
-                                                <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CD19"> CD19</label>
-                                                <select class="custom-select" id="ihc-cd19-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
-                                                    <option value="negative" style="color: #000;">Negative</option>
-                                                    <option value="positive" style="color: #000;">Positive</option>
-                                                </select>
-                                            </div>
-                                            <div style="display: flex; align-items: center;">
-                                                <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CyclinD1"> Cyclin D1</label>
-                                                <select class="custom-select" id="ihc-cyclind1-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
-                                                    <option value="negative" style="color: #000;">Negative</option>
-                                                    <option value="positive" style="color: #000;">Positive</option>
-                                                </select>
+                                            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+                                                <div style="display: flex; align-items: center;">
+                                                    <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CD138"> CD138</label>
+                                                    <select class="custom-select" id="ihc-cd138-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
+                                                        <option value="positive" style="color: #000;">Positive</option>
+                                                        <option value="negative" style="color: #000;">Negative</option>
+                                                    </select>
+                                                </div>
+                                                <div style="display: flex; align-items: center;">
+                                                    <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CD56"> CD56</label>
+                                                    <select class="custom-select" id="ihc-cd56-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
+                                                        <option value="positive" style="color: #000;">Positive</option>
+                                                        <option value="negative" style="color: #000;">Negative</option>
+                                                    </select>
+                                                </div>
+                                                <div style="display: flex; align-items: center;">
+                                                    <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CD19"> CD19</label>
+                                                    <select class="custom-select" id="ihc-cd19-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
+                                                        <option value="negative" style="color: #000;">Negative</option>
+                                                        <option value="positive" style="color: #000;">Positive</option>
+                                                    </select>
+                                                </div>
+                                                <div style="display: flex; align-items: center;">
+                                                    <label style="margin: 0; width: 120px; display: inline-flex; align-items: center; gap: 0.35rem;"><input type="checkbox" name="ihc-marker" value="CyclinD1"> Cyclin D1</label>
+                                                    <select class="custom-select" id="ihc-cyclind1-status" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none; margin-left: 0.5rem;">
+                                                        <option value="negative" style="color: #000;">Negative</option>
+                                                        <option value="positive" style="color: #000;">Positive</option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
