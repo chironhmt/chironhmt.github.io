@@ -158,40 +158,46 @@
                                             <div id="biopsy-site-radios" style="display: flex; flex-direction: column; gap: 0.6rem;">
                                                 <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
                                                     <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
-                                                        <input type="radio" name="biopsy-site" value="musculoskeletal" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'inline-block'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> Musculoskeletal
+                                                        <input type="radio" name="biopsy-site" value="musculoskeletal" onchange="toggleBiopsySiteSpecify(this.value)"> Musculoskeletal
                                                     </label>
                                                     <span id="biopsy-site-musculoskeletal-container" style="display: none; margin-left: 0.5rem;">
                                                         <input type="text" id="biopsy-site-musculoskeletal-specify" class="custom-text-input" placeholder="e.g. Spine, Ribs" style="display: inline-block; width: 170px; padding: 0.2rem 0.5rem; font-size: 0.85rem; margin-top: 0; line-height: normal;">
                                                     </span>
                                                 </div>
-                                                <div>
+                                                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
                                                     <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
-                                                        <input type="radio" name="biopsy-site" value="soft_tissue" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> Soft tissue (muscle or skin)
+                                                        <input type="radio" name="biopsy-site" value="soft_tissue" onchange="toggleBiopsySiteSpecify(this.value)"> Soft tissue (muscle or skin)
                                                     </label>
+                                                    <span id="biopsy-site-soft-tissue-container" style="display: none; margin-left: 0.5rem;">
+                                                        <input type="text" id="biopsy-site-soft-tissue-specify" class="custom-text-input" placeholder="e.g. thigh, back" style="display: inline-block; width: 170px; padding: 0.2rem 0.5rem; font-size: 0.85rem; margin-top: 0; line-height: normal;">
+                                                    </span>
                                                 </div>
                                                 <div>
                                                     <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
-                                                        <input type="radio" name="biopsy-site" value="pleura" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> Pleura
-                                                    </label>
-                                                </div>
-                                                <div>
-                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
-                                                        <input type="radio" name="biopsy-site" value="lymph_node" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> Lymph node
-                                                    </label>
-                                                </div>
-                                                <div>
-                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
-                                                        <input type="radio" name="biopsy-site" value="liver" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> Liver
-                                                    </label>
-                                                </div>
-                                                <div>
-                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
-                                                        <input type="radio" name="biopsy-site" value="cns" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> CNS
+                                                        <input type="radio" name="biopsy-site" value="pleura" onchange="toggleBiopsySiteSpecify(this.value)"> Pleura
                                                     </label>
                                                 </div>
                                                 <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
                                                     <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
-                                                        <input type="radio" name="biopsy-site" value="others" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'inline-block';"> Others
+                                                        <input type="radio" name="biopsy-site" value="lymph_node" onchange="toggleBiopsySiteSpecify(this.value)"> Lymph node
+                                                    </label>
+                                                    <span id="biopsy-site-lymph-node-container" style="display: none; margin-left: 0.5rem;">
+                                                        <input type="text" id="biopsy-site-lymph-node-specify" class="custom-text-input" placeholder="e.g. neck, axilla" style="display: inline-block; width: 170px; padding: 0.2rem 0.5rem; font-size: 0.85rem; margin-top: 0; line-height: normal;">
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                                                        <input type="radio" name="biopsy-site" value="liver" onchange="toggleBiopsySiteSpecify(this.value)"> Liver
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                                                        <input type="radio" name="biopsy-site" value="cns" onchange="toggleBiopsySiteSpecify(this.value)"> CNS
+                                                    </label>
+                                                </div>
+                                                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                                                        <input type="radio" name="biopsy-site" value="others" onchange="toggleBiopsySiteSpecify(this.value)"> Others
                                                     </label>
                                                     <span id="biopsy-site-others-container" style="display: none; margin-left: 0.5rem;">
                                                         <input type="text" id="biopsy-site-others-specify" class="custom-text-input" placeholder="Specify..." style="display: inline-block; width: 170px; padding: 0.2rem 0.5rem; font-size: 0.85rem; margin-top: 0; line-height: normal;">
@@ -269,6 +275,22 @@
     </div>
 
     <script>
+        function toggleBiopsySiteSpecify(selectedValue) {
+            const containers = {
+                'musculoskeletal': 'biopsy-site-musculoskeletal-container',
+                'soft_tissue': 'biopsy-site-soft-tissue-container',
+                'lymph_node': 'biopsy-site-lymph-node-container',
+                'others': 'biopsy-site-others-container'
+            };
+            
+            for (const [val, id] of Object.entries(containers)) {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.style.display = (selectedValue === val) ? 'inline-block' : 'none';
+                }
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const today = new Date().toISOString().split('T')[0];
             const dateInputs = document.querySelectorAll('.date-input');
