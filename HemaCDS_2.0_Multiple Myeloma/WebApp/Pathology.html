@@ -222,13 +222,11 @@
 
                                     <!-- IHC Details -->
                                     <div style="display: flex; flex-direction: column; gap: 1.25rem;">
-                                        <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-light); margin-bottom: 0.25rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">Immunohistochemistry (IHC)</h4>
-                                        <div style="display: flex; align-items: center; gap: 1rem;">
-                                            <label style="font-weight: 500; color: var(--text-main); width: 120px;">IHC Done</label>
-                                            <select class="custom-select" id="ihc-done-yesno" onchange="document.getElementById('ihc-details-container').style.display = (this.value === 'yes') ? 'block' : 'none'" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.85rem; outline: none;">
-                                                <option value="yes" style="color: #000;">Yes</option>
-                                                <option value="no" style="color: #000;">No</option>
-                                            </select>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; margin-bottom: 0.25rem;">
+                                            <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-light); margin: 0; border: none; padding: 0;">Immunohistochemistry (IHC)</h4>
+                                            <label style="display: flex; align-items: center; gap: 0.5rem; font-weight: 500; font-size: 0.9rem; color: var(--text-light); cursor: pointer; margin: 0;">
+                                                <input type="radio" id="ihc-not-done" name="ihc-done-status" value="not-done" style="transform: scale(1.2);"> Not done
+                                            </label>
                                         </div>
                                         <div id="ihc-details-container" style="display: flex; flex-direction: column; gap: 1.25rem;">
                                             <div style="display: flex; align-items: center; gap: 1rem;">
@@ -319,6 +317,72 @@
                     this.setAttribute('data-date', this.value);
                 });
             });
+
+            // Handle Biopsy Not Done Toggle
+            const biopsyNotDone = document.getElementById('biopsy-not-done');
+            if (biopsyNotDone) {
+                let biopsyChecked = false;
+                
+                biopsyNotDone.addEventListener('mousedown', function() {
+                    biopsyChecked = this.checked;
+                });
+                
+                biopsyNotDone.addEventListener('click', function() {
+                    if (biopsyChecked) {
+                        this.checked = false;
+                        updateBiopsyDisabledState(false);
+                    } else {
+                        updateBiopsyDisabledState(true);
+                    }
+                });
+            }
+
+            function updateBiopsyDisabledState(isDisabled) {
+                const biopsyType = document.getElementById('biopsy-type');
+                const biopsyTypeOther = document.getElementById('biopsy-type-other');
+                const dateBiopsy = document.getElementById('date-biopsy');
+                const biopsySiteRadios = document.getElementById('biopsy-site-radios');
+                
+                if (biopsyType) biopsyType.disabled = isDisabled;
+                if (biopsyTypeOther) biopsyTypeOther.disabled = isDisabled;
+                if (dateBiopsy) dateBiopsy.disabled = isDisabled;
+                
+                if (biopsySiteRadios) {
+                    const inputs = biopsySiteRadios.querySelectorAll('input');
+                    inputs.forEach(input => input.disabled = isDisabled);
+                    biopsySiteRadios.style.opacity = isDisabled ? '0.5' : '1';
+                    biopsySiteRadios.style.pointerEvents = isDisabled ? 'none' : 'auto';
+                }
+            }
+
+            // Handle IHC Not Done Toggle
+            const ihcNotDone = document.getElementById('ihc-not-done');
+            if (ihcNotDone) {
+                let ihcChecked = false;
+                
+                ihcNotDone.addEventListener('mousedown', function() {
+                    ihcChecked = this.checked;
+                });
+                
+                ihcNotDone.addEventListener('click', function() {
+                    if (ihcChecked) {
+                        this.checked = false;
+                        updateIhcDisabledState(false);
+                    } else {
+                        updateIhcDisabledState(true);
+                    }
+                });
+            }
+
+            function updateIhcDisabledState(isDisabled) {
+                const ihcContainer = document.getElementById('ihc-details-container');
+                if (ihcContainer) {
+                    const inputs = ihcContainer.querySelectorAll('input, select');
+                    inputs.forEach(input => input.disabled = isDisabled);
+                    ihcContainer.style.opacity = isDisabled ? '0.5' : '1';
+                    ihcContainer.style.pointerEvents = isDisabled ? 'none' : 'auto';
+                }
+            }
         });
     </script>
 </body>
