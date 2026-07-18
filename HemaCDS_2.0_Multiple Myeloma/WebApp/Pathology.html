@@ -108,10 +108,21 @@
                         <!-- Section 1: Biopsy & IHC -->
                         <div class="card">
                             <div class="card-header" style="display: flex; justify-content: space-between; align-items: flex-start;">
-                                <div>
-                                    <h3>1. Biopsy & IHC</h3>
+                                <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                                    <h3 style="margin: 0;">1. Biopsy</h3>
+                                    <select class="custom-select" id="biopsy-type" onchange="document.getElementById('biopsy-type-other-container').style.display = (this.value === 'others') ? 'inline-block' : 'none'" style="padding: 0.2rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.9rem; outline: none;">
+                                        <option value="" disabled selected style="color: #000;">Select Biopsy Type</option>
+                                        <option value="excisional" style="color: #000;">Excisional</option>
+                                        <option value="incisional" style="color: #000;">Incisional</option>
+                                        <option value="fine needle" style="color: #000;">Fine Needle</option>
+                                        <option value="core needle" style="color: #000;">Core Needle</option>
+                                        <option value="others" style="color: #000;">Others</option>
+                                    </select>
+                                    <span id="biopsy-type-other-container" style="display: none;">
+                                        <input type="text" id="biopsy-type-other" class="custom-text-input" placeholder="Specify..." style="display: inline-block; width: 150px; padding: 0.2rem 0.5rem; font-size: 0.85rem; margin-top: 0; line-height: normal;">
+                                    </span>
                                 </div>
-                                <div style="display: flex; align-items: center; gap: 1rem; transform: translateY(4px);">
+                                <div style="display: flex; align-items: center; gap: 1rem; transform: translateY(4px); flex-wrap: wrap;">
                                     <div style="display: flex; align-items: center; gap: 0.5rem;">
                                         <label for="date-biopsy" style="font-size: 0.875rem; color: var(--text-secondary);">Date of test</label>
                                         <input type="date" data-date="" id="date-biopsy" class="custom-text-input date-input custom-date-format" style="margin: 0; padding: 0.4rem; width: 118px; font-size: 0.875rem; text-align: center;">
@@ -142,23 +153,51 @@
                                     <!-- Left side: Biopsy Details -->
                                     <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 1.25rem;">
                                         <h4 style="font-size: 1rem; font-weight: 600; color: var(--text-light); margin-bottom: 0.25rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">Biopsy Details</h4>
-                                        <div style="display: flex; align-items: center; gap: 1rem;">
-                                            <label style="font-weight: 500; color: var(--text-main); width: 120px;">Biopsy Type</label>
-                                            <select class="custom-select" id="biopsy-type" onchange="document.getElementById('biopsy-type-other-container').style.display = (this.value === 'others') ? 'inline-block' : 'none'" style="padding: 0.3rem 0.5rem; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-size: 0.9rem; outline: none;">
-                                                <option value="" disabled selected style="color: #000;">Select Biopsy Type</option>
-                                                <option value="excisional" style="color: #000;">Excisional</option>
-                                                <option value="incisional" style="color: #000;">Incisional</option>
-                                                <option value="fine needle" style="color: #000;">Fine Needle</option>
-                                                <option value="core needle" style="color: #000;">Core Needle</option>
-                                                <option value="others" style="color: #000;">Others</option>
-                                            </select>
-                                        </div>
-                                        <div id="biopsy-type-other-container" style="display: none; margin-left: 136px;">
-                                            <input type="text" id="biopsy-type-other" class="custom-text-input" placeholder="Specify other type..." style="display: inline-block; width: 180px; padding: 0.3rem 0.5rem; font-size: 0.85rem; margin-top: 0;">
-                                        </div>
-                                        <div style="display: flex; align-items: center; gap: 1rem;">
-                                            <label for="biopsy-site" style="font-weight: 500; color: var(--text-main); width: 120px;">Biopsy Site</label>
-                                            <input type="text" id="biopsy-site" class="custom-text-input" placeholder="e.g. Bone, Soft tissue, Lymph node" style="width: 220px; padding: 0.3rem 0.5rem; font-size: 0.85rem; margin-top: 0;">
+                                        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                            <label style="font-weight: 500; color: var(--text-main); margin-bottom: 0.25rem;">Biopsy Site</label>
+                                            <div id="biopsy-site-radios" style="display: flex; flex-direction: column; gap: 0.6rem;">
+                                                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                                                        <input type="radio" name="biopsy-site" value="musculoskeletal" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'inline-block'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> Musculoskeletal
+                                                    </label>
+                                                    <span id="biopsy-site-musculoskeletal-container" style="display: none; margin-left: 0.5rem;">
+                                                        <input type="text" id="biopsy-site-musculoskeletal-specify" class="custom-text-input" placeholder="e.g. Spine, Ribs" style="display: inline-block; width: 170px; padding: 0.2rem 0.5rem; font-size: 0.85rem; margin-top: 0; line-height: normal;">
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                                                        <input type="radio" name="biopsy-site" value="soft_tissue" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> Soft tissue (muscle or skin)
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                                                        <input type="radio" name="biopsy-site" value="pleura" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> Pleura
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                                                        <input type="radio" name="biopsy-site" value="lymph_node" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> Lymph node
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                                                        <input type="radio" name="biopsy-site" value="liver" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> Liver
+                                                    </label>
+                                                </div>
+                                                <div>
+                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                                                        <input type="radio" name="biopsy-site" value="cns" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'none';"> CNS
+                                                    </label>
+                                                </div>
+                                                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                                                    <label style="margin: 0; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+                                                        <input type="radio" name="biopsy-site" value="others" onchange="document.getElementById('biopsy-site-musculoskeletal-container').style.display = 'none'; document.getElementById('biopsy-site-others-container').style.display = 'inline-block';"> Others (specify)
+                                                    </label>
+                                                    <span id="biopsy-site-others-container" style="display: none; margin-left: 0.5rem;">
+                                                        <input type="text" id="biopsy-site-others-specify" class="custom-text-input" placeholder="Specify..." style="display: inline-block; width: 170px; padding: 0.2rem 0.5rem; font-size: 0.85rem; margin-top: 0; line-height: normal;">
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     
