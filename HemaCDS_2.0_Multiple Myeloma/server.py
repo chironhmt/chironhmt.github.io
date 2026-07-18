@@ -15,7 +15,7 @@ def get_db_connection():
 @app.route('/api/patients', methods=['GET'])
 def get_patients():
     conn = get_db_connection()
-    patients = conn.execute('SELECT * FROM patients ORDER BY created_at DESC').fetchall()
+    patients = conn.execute('SELECT id, upn, name, age_diagnosis, sex, diagnosis_date, vital_status, "date_last_follow-up" AS date_last_follow_up FROM eunpyeong_mm_patients ORDER BY created_at DESC').fetchall()
     conn.close()
     
     return jsonify([dict(p) for p in patients])

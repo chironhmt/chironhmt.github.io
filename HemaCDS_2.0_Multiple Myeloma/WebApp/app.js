@@ -955,3 +955,23 @@ function renderSummary() {
 
 // Run app
 document.addEventListener('DOMContentLoaded', loadData);
+
+// Set default date for any date inputs to today
+document.addEventListener('DOMContentLoaded', () => {
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    if (dateInputs.length > 0) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInputs.forEach(input => {
+            if (!input.value) {
+                input.value = today;
+                input.setAttribute('data-date', today);
+            } else {
+                input.setAttribute('data-date', input.value);
+            }
+            
+            input.addEventListener('change', function() {
+                this.setAttribute('data-date', this.value);
+            });
+        });
+    }
+});

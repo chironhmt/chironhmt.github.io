@@ -60,7 +60,7 @@
     <div class="app-container">
         <header class="app-header">
             <div class="logo">
-                <h1>HemaCDS 2.0 <span>Multiple myeloma_BM aspiration and biopsy</span></h1>
+                <h1 style="font-size: 1.5rem;">HemaCDS 2.0 <span>Multiple myeloma_BM aspiration and biopsy</span></h1>
             </div>
         </header>
 
@@ -75,7 +75,7 @@
                             <div class="cycle-meta-inputs" style="display: flex; gap: 1rem; align-items: center;">
                                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                                     <label for="date-of-test" style="font-size: 0.875rem; color: var(--text-secondary);">Date of test</label>
-                                    <input type="date" id="date-of-test" class="custom-text-input" style="margin: 0; padding: 0.4rem; width: auto; font-size: 0.875rem; text-align: center;">
+                                    <input type="date" data-date="" id="date-of-test" class="custom-text-input custom-date-format" style="margin: 0; padding: 0.4rem; width: 118px; font-size: 0.875rem; text-align: center;">
                                 </div>
                             </div>
                         </div>
@@ -152,7 +152,7 @@
                                 <p class="subtitle">Enter the clinical interpretation</p>
                             </div>
                             <div class="card-body">
-                                <textarea id="interpretation" class="custom-text-input" placeholder="Enter interpretation here..." style="width: 100%; max-width: 600px; min-height: 80px; resize: vertical; padding: 1rem;"></textarea>
+                                <textarea id="interpretation" class="custom-text-input custom-date-format" placeholder="Enter interpretation here..." style="width: 100%; max-width: 600px; min-height: 80px; resize: vertical; padding: 1rem;"></textarea>
                             </div>
                         </div>
 

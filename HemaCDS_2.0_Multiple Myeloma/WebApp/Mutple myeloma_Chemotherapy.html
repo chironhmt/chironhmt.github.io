@@ -16,7 +16,7 @@
     <div class="app-container">
         <header class="app-header">
             <div class="logo">
-                <h1>HemaCDS 2.0 <span>Multiple Myeloma_Chemotherapy</span></h1>
+                <h1 style="font-size: 1.5rem;">HemaCDS 2.0 <span>Multiple Myeloma_Chemotherapy</span></h1>
             </div>
         </header>
 
@@ -24,7 +24,7 @@
             <aside class="sidebar" id="sidebar">
                 <div class="sidebar-header" style="flex-direction: column; align-items: stretch; gap: 0.5rem; border-bottom: none; padding-bottom: 0;">
                     <h2>Line</h2>
-                    <select id="line-input" class="custom-text-input" style="margin: 0; padding: 0.5rem; width: 100%;">
+                    <select id="line-input" class="custom-text-input custom-date-format" style="margin: 0; padding: 0.5rem; width: 100%;">
                         <option value="First">First</option>
                         <option value="Consolidation">Consolidation</option>
                         <option value="Maintenance">Maintenance</option>
@@ -42,7 +42,7 @@
                     </select>
                     
                     <h2 style="margin-top: 0.5rem;">Regimen</h2>
-                    <select id="regimen-input" class="custom-text-input" style="margin: 0; padding: 0.5rem; width: 100%;">
+                    <select id="regimen-input" class="custom-text-input custom-date-format" style="margin: 0; padding: 0.5rem; width: 100%;">
                         <option value="" disabled selected>Choose regimen</option>
                         <option value="Others">Others</option>
                     </select>
@@ -78,7 +78,7 @@
                             <div class="cycle-meta-inputs" style="display: flex; gap: 1rem; align-items: center; transform: translateY(4px);">
                                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                                     <label for="cycle-start-date" style="font-size: 0.875rem; color: var(--text-secondary);">Start Date</label>
-                                    <input type="date" id="cycle-start-date" class="custom-text-input" style="margin: 0; padding: 0.4rem; width: auto; font-size: 0.875rem; text-align: center;">
+                                    <input type="date" data-date="" id="cycle-start-date" class="custom-text-input custom-date-format" style="margin: 0; padding: 0.4rem; width: 118px; font-size: 0.875rem; text-align: center;">
                                 </div>
                                 <div style="display: flex; align-items: center; gap: 0.5rem;">
                                     <label for="cycle-length" style="font-size: 0.875rem; color: var(--text-secondary);">Cycle Length</label>
